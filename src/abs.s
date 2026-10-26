@@ -9,10 +9,13 @@
 #   None
 # =================================================================
 abs:
-    # Prologue
 
-    # PASTE HERE
+    lw t0, 0(a0)
+    blt x0, t0, done
+    
+    sub t0, x0, t0
+    
+    sw t0, 0(a0)
 
-    # Epilogue
-
+done:
     jr ra

@@ -16,15 +16,35 @@
 # =================================================================
 argmax:
     # Prologue
-
+    li t2, 0
+    li t3, 1
+    li t4, 0   #index
+    li t5, 0x80000000   #number
+    
+    blt a1, t3, error
 
 loop_start:
-
+    bge t2, a1, loop_end
+    slli t1, t2, 2
+    add t1, a0, t1
+    lw t0, 0(t1)
+    
+    bge t5, t0, loop_continue
+    mv t4, t2
+    mv t5, t0
 
 loop_continue:
-
+    addi t2, t2, 1
+    j loop_start
 
 loop_end:
     # Epilogue
-
+    mv a0, t4
     jr ra
+    
+error:
+    li a0, 36
+    j exit
+
+
+
