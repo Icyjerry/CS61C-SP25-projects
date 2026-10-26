@@ -397,8 +397,5 @@ game_t *initialize_snakes(game_t *game) {
     }
   }
 
-
-
-
   return game;
 }
